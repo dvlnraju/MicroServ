@@ -1,0 +1,30 @@
+
+
+spring:
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false    gateway:
+      routes:
+      #- id : AppLoadBalancer
+        #uri: http://localhost:8000   with only gateway ten make loadbalancer a separate proj
+      - id : common
+        uri: lb://common
+        predicates:        - Path=/appm2/*
+      #- id : FeatureLoadBalancer
+        #uri: http://localhost:8001
+      - id : commonTwo
+        uri: lb://commonTwo
+        predicates:        - Path=/appm3/*
+      - id : msam1
+        uri: lb://msam1
+        predicates:
+        - Path=/appm1/*
+      - id : secJWT
+        uri: lb://secJWT
+        predicates:
+        - Path=/checkValidity
+      discovery:
+        locator:
+           enabled: true
+           lower-case-service-id: true
