@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+	<head>
+		<meta charset="UTF-8"></meta>
+		<title> obj </title>
+	</head>
+	<body>
+		Length <b th:text ="${objects}"> </b>
+		<br>
+		<table>
+			<tr><td>Names of Obects</td></tr>
+			<tr th:each="obj:${objects}"><td th:text = "${obj.className}"></td></tr>
+		</table>
+	</body>
+</html>
