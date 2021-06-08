@@ -7,7 +7,7 @@ spring:
         enabled: false    gateway:
       routes:
       #- id : AppLoadBalancer
-        #uri: http://localhost:8000   with only gateway ten make loadbalancer a separate proj
+        #uri: http://localhost:8000   with only gateway then make loadbalancer a separate proj
       - id : msam1
         uri: lb://msam1
         predicates:        - Path=/appm1/**
@@ -20,6 +20,18 @@ spring:
         uri: lb://secJWT
         predicates:
         - Path=/authN
+      - id : thyme
+        uri: lb://thyme
+        predicates:
+        - Path=/thy1/**
+      - id : thyme2
+        uri: lb://thyme2
+        predicates:
+        - Path=/thy2/**
+      #- id : autenticationServ
+       # uri: http://localhost:8080
+       # predicates:
+       # - Path=/authenticate
       discovery:
         locator:
            enabled: true

@@ -3,8 +3,11 @@ package com.Thyme.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,14 +18,14 @@ import org.springframework.web.servlet.ModelAndView;
 public class firstController {
 
 	//@ResponseBody
-	@RequestMapping(value="/init",method = RequestMethod.GET)
+	@GetMapping(value="/thy1/init")
 	public String welcome() {
 		System.out.println("welcome");
 		return "welcome";
 	}
 	
 	
-	@RequestMapping(value="/proj",method = RequestMethod.GET)
+	@GetMapping(value="/thy1/proj")
 	public ModelAndView proj() {
 		System.out.println("proj");
 		ModelAndView mv = new ModelAndView("projTemplate");
@@ -30,7 +33,7 @@ public class firstController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/obj",method = RequestMethod.GET)
+	@GetMapping(value="/thy1/obj")
 	public ModelAndView obj() {
 		System.out.println("obj");
 		ModelAndView mv = new ModelAndView("object");
@@ -42,7 +45,18 @@ public class firstController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/det",method = RequestMethod.GET)
+	@ResponseBody
+	@PostMapping(value="/thy1/objprov", produces = "application/json")
+	public ArrayList<Obj> objprov() {
+		System.out.println("objprov");
+		ArrayList<Obj> objs = new ArrayList<Obj>();
+		Obj obj1 = new Obj(); obj1.setClassName("test1");
+		Obj obj2 = new Obj(); obj2.setClassName("test2");
+		objs.add(obj1);objs.add(obj2);
+		return objs;
+	}
+	
+	@GetMapping(value="/thy1/det")
 	public ModelAndView preForm() {
 		System.out.println("det");
 		ModelAndView mv = new ModelAndView("classform");
@@ -51,8 +65,8 @@ public class firstController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/detForm",method = RequestMethod.POST)
-	public ModelAndView postForm(/* @RequestBody Obj obj */@ModelAttribute Obj obj) {
+	@PostMapping(value="/thy1/detForm")
+	public ModelAndView postForm(@RequestBody Obj obj/* @ModelAttribute Obj obj */) {
 		System.out.println("detForm");
 		ModelAndView mv = new ModelAndView("classform");
 		obj.setProperties(obj.getProperties()+" : saved");
