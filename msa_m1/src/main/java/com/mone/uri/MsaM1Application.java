@@ -11,8 +11,11 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 @SpringBootApplication
 @EnableEurekaClient
+@EnableSwagger2
 /* @EnableCircuitBreaker */
 /* @EnableHystrix */
 @EnableFeignClients(basePackages = "com.mone.feign")

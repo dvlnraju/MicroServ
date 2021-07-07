@@ -28,6 +28,9 @@ public class UserInfo {
 	@Column(name = "password",nullable = false)
 	private String password;
 	
+	@Column(name = "password_b",nullable = false)
+	private String passwordb;
+	
 	@Transient
 	private Collection<GrantedAuthority> grantedAuthorities;
    
@@ -72,7 +75,13 @@ public class UserInfo {
 	public void setGrantedAuthorities(Collection<GrantedAuthority> grantedAuthorities) {
 		this.grantedAuthorities = grantedAuthorities;
 	}
-	
-	
+
+	public String getPasswordb() {
+		return passwordb;
+	}
+
+	public void setPasswordb(String passwordb) {
+		this.passwordb = passwordb;
+	}
 	
 }

@@ -27,11 +27,11 @@ public class JWTFilter extends OncePerRequestFilter{
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
-		if(feignm2.checkValidity(request.getHeader("Authorization")).getBody().equals("Success")) {
+		//if(feignm2.checkValidity(request.getHeader("Authorization")).getBody().equals("Success")) {
 			filterChain.doFilter(request, response);
-		}else{
-			throw new ServletException("JWT didnot match");
-		}
+		//}else{
+			//throw new ServletException("JWT didnot match");
+		//}
 	}
 		
 }

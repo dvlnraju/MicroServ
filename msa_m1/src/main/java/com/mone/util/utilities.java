@@ -23,6 +23,8 @@ public class utilities {
 	@Autowired
 	private FeignClientm2 feignm2;
 	
+	//@Autowired JdbcTemplate jdbc;
+	
 	public JdbcTemplate getJDBCTemplate() {
 		return new JdbcTemplate(datasource);
 	}

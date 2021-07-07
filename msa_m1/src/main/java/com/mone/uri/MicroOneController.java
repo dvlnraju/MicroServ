@@ -4,7 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -56,6 +58,8 @@ public class MicroOneController {
 	}
 	
 	@GetMapping("/appm1/proj")
+	//@Produces
+	//@Consumes
 	public Configuration getProjInfo() {
 		return config;
 	}
