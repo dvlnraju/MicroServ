@@ -1,0 +1,56 @@
+resilience4j.circuitbreaker:
+    configs:
+       default:
+            registerHealthIndicator: true  #localhost:8080/actuator/health
+            register-health-indicator: true
+            sliding-window-size: 10
+            permitted-number-of-calls-in-half-open-state: 3
+            sliding-window-type: TIME_BASED
+            minimum-number-of-calls: 20
+            wait-duration-in-open-state: 50s
+            failure-rate-threshold: 50
+            event-consumer-buffer-size: 10
+            #slidingWindowSize: 10
+            #permittedNumberOfCallsInHalfOpenState: 3
+            #slidingWindowType: TIME_BASED
+            #minimumNumberOfCalls: 20
+            #waitDurationInOpenState: 50s
+            #failureRateThreshold: 50
+            #eventConsumerBufferSize: 10
+            #recordFailurePredicate: io.github.robwin.exception.RecordFailurePredicate
+            recordExceptions:
+              - org.springframework.web.client.HttpServerErrorException
+              - java.io.IOException
+              - java.util.concurrent.TimeoutException
+              #- org.springframework.web.client.ResourcrAccessException
+            #ignore-exceptions:
+              #- io.github.resilience4j.circuitbreaker.IgnoredException
+            #retryExceptions:
+            #  - java.lang.IllegalArgumentException
+            ring-buffer-size-in-closed-state: 5
+            ring-buffer-size-in-half-open-state: 3           
+    instances:
+       msam2:
+          base-config: default
+
+#resilience4j.ratelimiter:
+#    instances:
+#      msam2:
+#          limit-for-period: 100  #default 50
+#          limit-refresh-period: 100ms #default 500 [ns]
+#          timeout-duration: 2000ms #default 5 [s]
+          
+#resilience4j.retry:
+#    instances:
+#      msam2:
+#         #max-retry-attempts : 3
+#         max-attempts: 3 #default 3
+#         wait-duration: 2000ms # 500[ms]
+          
+#resilience4j.bulkhead:
+#    instances:
+#      msam2:
+#          max-concurrent-calls: 20 #default 25
+#          max-wait-duration: 2000ms #0
+    
+    #### Resilience4j Aspects ordering Retry > CircuitBreaker > RateLimiter > Bulkhead
